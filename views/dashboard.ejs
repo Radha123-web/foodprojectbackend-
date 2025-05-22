@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      height: 100%;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes slideInLeft {
+      from { transform: translateX(-200px); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .maincontainer {
+      width: 100vw;
+      height: 100vh;
+      background-image: url('/images/foodbg.png');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      display: flex;
+      flex-direction: column;
+      font-family: "Poppins", sans-serif;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    .navbarstyle {
+      width: 100%;
+      height: 50px;
+      background: #3F4F44;
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+    }
+
+    .logostyle {
+      width: 70px;
+      height: 40px;
+      margin: 5px;
+      animation: bounce 2s infinite;
+    }
+
+    .leftBox {
+      width: 170px;
+      background: #A27B5C;
+      margin: 20px;
+      padding: 10px;
+      border-radius: 20px;
+      animation: slideInLeft 1s ease-in-out;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .leftBox img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50px;
+      margin-bottom: 10px;
+    }
+
+    .leftBox div {
+      font-weight: 500;
+      letter-spacing: 1px;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .leftBox a {
+      margin-top: 20px;
+      color: #fff;
+      font-weight: bold;
+      font-size: 14px;
+      text-decoration: none;
+      transition: color 0.3s, transform 0.3s;
+      cursor: pointer;
+    }
+
+    .leftBox a:hover {
+      color: #FFD700;
+      transform: scale(1.05);
+    }
+
+    iframe {
+      width: 100%;
+      height: 600px;
+      border: none;
+      display: none;
+    }
+
+    .contentArea {
+      flex: 1;
+      padding: 20px;
+      overflow: auto;
+    }
+
+    .mainFlex {
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+
+    #centerLogo {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      animation: fadeIn 1s;
+    }
+
+    #centerLogo img {
+      width: 350px;
+      margin-top: 15%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="maincontainer">
+    <div class="navbarstyle">
+      <img src="/images/logo1.png" class="logostyle">
+    </div>
+
+    <div class="mainFlex">
+      <div class="leftBox">
+        <img src="/images/<%=data.picture %>">
+        <div><%=data.adminname %></div>
+        <div style="font-size: 10px;"><%=data.emailid %></div>
+        <div style="font-size: 10px;">+91 <%=data.mobileno %></div>
+
+        <a href="/food/display_all_food" target="mw" onclick="showIframe()">Food list</a>
+        <a href="/food/food_interface" target="mw" onclick="showIframe()">Add Food</a>
+        <a href="/food/display_all_food" target="mw" onclick="showIframe()">Update Food</a>
+        <a href="/admin/admin_logout">Logout</a>
+      </div>
+
+      <div class="contentArea">
+        <!-- Centered logo -->
+        <div id="centerLogo">
+          <img src="/images/logo1.png">
+        </div>
+
+        <!-- Main iframe -->
+        <iframe name="mw" id="mainIframe"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function showIframe() {
+      document.getElementById('centerLogo').style.display = 'none';
+      document.getElementById('mainIframe').style.display = 'block';
+    }
+  </script>
+</body>
+</html>
